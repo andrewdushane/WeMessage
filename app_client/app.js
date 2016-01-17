@@ -8,6 +8,11 @@
         controller: 'homeCtrl',
         controllerAs: 'vm'
       })
+      .when('/chat', {
+        templateUrl: 'chat/chat.view.html',
+        controller: 'chatCtrl',
+        controllerAs: 'vm'
+      })
       .otherwise({redirectTo: '/'});
     $locationProvider.html5Mode({
       enabled: true,

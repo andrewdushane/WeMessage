@@ -1,10 +1,47 @@
+// Purple Rain by whoneycutt https://color.adobe.com/Purple-Rain-color-theme-50004/
 @purple1: #25064C;
 @purple2: #36175E;
+@purple3: #553285;
+@purple4: #7B52AB;
+@purple5: #9768D1;
+// offset for fixed navbar
 body {
-  padding-top: 70px;
+  padding-top: 50px;
+}
+// undo bootstrap defaults
+h1, h2, h3, h4, h5, h6 {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-weight: 400;
+}
+a {
+  color: @purple3;
+}
+a:hover {
+  text-decoration: none;
+  color: @purple4;
+}
+.bold {
+  font-weight: 700;
+}
+.italics {
+  font-style: italic;
+}
+.sub-header {
+  background: @purple4;
+  color: #FFF;
+  a {
+    color: #FFF;
+  }
+}
+.right-button {
+  margin-right: 10px;
 }
 .main-navigation.navbar-inverse {
   background: @purple1;
+  .navbar-brand {
+    font-size: 2em;
+  }
   .navbar-nav>li>a, .navbar-brand, .toggle-bars {
     color: #FFFFFF;
   }
