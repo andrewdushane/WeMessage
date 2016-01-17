@@ -1,8 +1,23 @@
+@purple1: #25064C;
+@purple2: #36175E;
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  padding-top: 70px;
 }
-
-a {
-  color: #00B7FF;
+.main-navigation.navbar-inverse {
+  background: @purple1;
+  .navbar-nav>li>a, .navbar-brand, .toggle-bars {
+    color: #FFFFFF;
+  }
+  .navbar-toggle:focus, .navbar-toggle:hover {
+    background: @purple2;
+  }
+  .navbar-toggle {
+    padding: 0.5em 1em 0.25em;
+    border: 0;
+  }
+  .toggle-bars {
+    font-size: 1.5em;
+    transform:scale(1.5,1);
+    -webkit-transform:scale(1.5,1);
+  }
 }
