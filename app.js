@@ -4,7 +4,6 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var http = require('http').Server(app);
 var io = require('socket.io')(8080);
 
 // var routes = require('./app_server/routes/index');
@@ -62,13 +61,13 @@ app.use(function(err, req, res, next) {
   });
 });
 
-io.sockets.on('connection', function (socket) {
-  socket.on('echo', function (data) {
-    console.log('socket echo');
-    socket.emit('echo', data);
+io.on('connection', function (socket) {
+  console.log('User connected');
+  socket.on('chatroom-message', function (data) {
+    console.log(data);
+    io.emit('chatroom-message', data);
   });
   socket.on('echo-ack', function (data, callback) {
-    console.log('socket echo-ack');
     callback(data);
   });
 });

@@ -6,16 +6,15 @@
   chatCtrl.$inject = ['$scope', '$socket'];
   function chatCtrl($scope, $socket) {
     var vm = this;
-    $socket.on('echo', function (data) {
-      vm.serverResponse = data;
+    vm.messageThread = [];
+    $socket.on('chatroom-message', function (data) {
+      vm.messageThread.push({content: data});
     });
-    vm.emitBasic = function emitBasic() {
-      console.log('button clicked');
-      $socket.emit('echo', vm.dataToSend);
-      vm.dataToSend = '';
+    vm.sendMessage = function sendMessage() {
+      $socket.emit('chatroom-message', vm.messageToSend);
+      vm.messageToSend = '';
     };
-
-    vm.emitACK = function emitACK() {
+    vm.sendMessageACK = function sendMessageACK() {
       $socket.emit('echo-ack', vm.dataToSend, function (data) {
           vm.serverResponseACK = data;
       });
