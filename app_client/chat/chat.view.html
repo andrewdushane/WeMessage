@@ -8,8 +8,8 @@
     </div>
   </div>
   <ul class="row list-group">
-    <li class="col-xs-12 list-group-item lead" ng-repeat="message in vm.messageThread" ng-class="message.sentBySelf">
-      {{ message.content }}
+    <li class="col-xs-12 list-group-item" ng-repeat="message in vm.messageThread" ng-class="message.sentBySelf">
+      <span class="bold">{{ message.username }}:</span> {{ message.content }}
     </li>
   </ul>
   <div id="end-of-message-thread" class="scroll-buffer">

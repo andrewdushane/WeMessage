@@ -19,7 +19,8 @@
     $socket.on('chatroom-message', function (data) {
       var message = {
         content: data.message,
-        sentBySelf: ''
+        sentBySelf: '',
+        username: data.username
       };
       if(vm.userId == data.sender) {
         message.sentBySelf = 'self-sent text-right';
