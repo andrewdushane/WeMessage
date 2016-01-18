@@ -1,7 +1,5 @@
 var io = require('socket.io')(process.env.PORT || 8080);
 
-var tmpId = 0;
-
 io.on('connection', function (socket) {
   socket.emit('set-id', socket.client.id);
   socket.on('set-nickname', function(name) {
@@ -16,7 +14,7 @@ io.on('connection', function (socket) {
     });
   });
 
-  // echo-ack, no currently in use
+  // echo-ack, not currently in use
   socket.on('echo-ack', function (data, callback) {
     callback(data);
   });

@@ -25,6 +25,9 @@ a:hover {
   color: @purple4;
 }
 .btn-purple {
+  color: #FFFFFF;
+}
+.btn-purple, .btn-purple:hover, .btn-purple:active, .btn-purple:focus {
   background-image: -webkit-linear-gradient(top,@purple4 0,@purple2 100%);
   background-image: -o-linear-gradient(top,@purple4 0,@purple2 100%);
   background-image: -webkit-gradient(linear,left top,left bottom,from(@purple4),to(@purple2));
@@ -33,9 +36,8 @@ a:hover {
   filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
   background-repeat: repeat-x;
   border-color: @purple1;
-  color: #FFFFFF;
 }
-.btn-purple:hover {
+.btn-purple:hover, .btn-purple:active, .btn-purple:focus {
   color: #DDDDDD;
 }
 .bold {

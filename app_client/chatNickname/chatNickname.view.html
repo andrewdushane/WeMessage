@@ -1,12 +1,12 @@
 <div class="modal-content">
   <form ng-submit="vm.onSubmit()" class="form-horizontal">
     <div class="modal-header">
-      <h4 id="myModalLabel" class="modal-title">Set your nickname for this chat.</h4>
+      <h4 id="myModalLabel" class="modal-title">Please set your nickname.<br><small>This will be shown to other participants in this chatroom.</small></h4>
     </div>
     <div class="modal-body">
       <div role="alert" ng-show="vm.formError" class="alert alert-danger">{{ vm.formError }}</div>
       <div class="form-group">
-        <label for="name" class="col-xs-2 col-sm-2 control-label">Name</label>
+        <label for="nickname" class="col-xs-2 col-sm-2 control-label">Nickname</label>
         <div class="col-xs-10 col-sm-10">
           <input id="nickname" name="nickname" ng-model="vm.formData.nickname" class="form-control"/>
         </div>
