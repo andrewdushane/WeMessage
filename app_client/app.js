@@ -18,10 +18,7 @@
       enabled: true,
       requireBase: false
     });
-    var port = '';
-    if(window.location.hostname == 'localhost') {
-      port = ':8080';
-    }
+    var port = ':8080';
     $socketProvider.setConnectionUrl(window.location.hostname + port);
   }
 

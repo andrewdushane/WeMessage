@@ -1,4 +1,4 @@
-var io = require('socket.io')(process.env.PORT || 8080);
+var io = require('socket.io')(8080);
 
 io.on('connection', function (socket) {
   socket.emit('set-id', socket.client.id);
