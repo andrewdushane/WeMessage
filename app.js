@@ -4,6 +4,8 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var http = require('http').Server(app);
+var io = require('socket.io')(8080);
 
 // var routes = require('./app_server/routes/index');
 
@@ -26,7 +28,7 @@ app.use(express.static(path.join(__dirname, 'app_client')));
 // app.use('/', routes);
 // Send static html file, routing handled on client
 app.use(function(req, res) {
-  res.sendfile(path.join(__dirname, 'app_client', 'index.html'));
+  res.sendFile(path.join(__dirname, 'app_client', 'index.html'));
 });
 
 // catch 404 and forward to error handler
@@ -60,5 +62,15 @@ app.use(function(err, req, res, next) {
   });
 });
 
+io.sockets.on('connection', function (socket) {
+  socket.on('echo', function (data) {
+    console.log('socket echo');
+    socket.emit('echo', data);
+  });
+  socket.on('echo-ack', function (data, callback) {
+    console.log('socket echo-ack');
+    callback(data);
+  });
+});
 
 module.exports = app;

@@ -1,7 +1,7 @@
 (function() {
-  angular.module('weMessageApp', ['ngRoute', 'ngSanitize']);
+  angular.module('weMessageApp', ['ngRoute', 'ngSanitize', 'socket.io']);
 
-  function config($routeProvider, $locationProvider) {
+  function config($routeProvider, $locationProvider, $socketProvider) {
     $routeProvider
       .when('/', {
         templateUrl: 'home/home.view.html',
@@ -18,9 +18,10 @@
       enabled: true,
       requireBase: false
     });
+    $socketProvider.setConnectionUrl('http://localhost:8080');
   }
 
   angular
     .module('weMessageApp')
-    .config(['$routeProvider', '$locationProvider', config]);
+    .config(['$routeProvider', '$locationProvider', '$socketProvider', config]);
 })();

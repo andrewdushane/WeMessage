@@ -7,5 +7,14 @@
       </h3>
     </div>
   </div>
+  <div class="row">
+    <div class="col-xs-12">
+      <input ng-model="dataToSend">
+      <button ng-click="vm.emitBasic()">Send</button>
+      <button ng-click="vm.emitACK()">Send (ACK)</button>
+      <div>Server Response: {{ serverResponse }}</div>
+      <div>Server Response (ACK): {{ serverResponseACK }}</div>
+    </div>
+  </div>
 </div>
 <main-footer></main-footer>
