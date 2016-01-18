@@ -7,28 +7,40 @@
   function chatCtrl($scope, $socket, $uibModal) {
     var vm = this;
     vm.alertMessage = '';
-    vm.messageThread = [];
-    vm.userId = '';
+    vm.messageThread = vm.messageThread [];
+    vm.userId = vm.userId || localStorage.userId || '';
+    vm.nickname = vm.nickname || localStorage.nickname || '';
 
     // set user id on connect
-    $socket.on('set-id', function(data) {
-      vm.userId = data;
+    $socket.on('set-id', function(id) {
+      vm.userId = id;
+      localStorage.setItem('userId', id);
     });
+
+    $socket.on('nickname-set', function(name) {
+      vm.nickname = name;
+      localStorage.nickname = name;
+    })
 
     // display messages as they come in
     $socket.on('chatroom-message', function (data) {
+      // get message data from socket event
+      var nickname = data.username || vm.nickname || '';
       var message = {
         content: data.message,
         selfClasses: '',
         showNickname: true,
-        username: data.username
+        username: nickname
       };
+      // alter layout if message was sent by this user
       if(vm.userId == data.sender) {
         message.selfClasses = 'self-sent text-right';
         message.showNickname = false;
       }
+      // display the message
       vm.messageThread.push(message);
-
+      // scroll to the bottom of the message thread
+      // jQuery - because anchorScroll != 'clean'
       $('html, body').animate({
         scrollTop: $('#message-input-anchor').offset().top
       }, 'slow');
@@ -55,7 +67,9 @@
       });
     };
 
-    vm.chatNicknamePopup();
+    if(!vm.nickname) {
+      vm.chatNicknamePopup();
+    }
 
     // echo-ack, not currently in use
     vm.sendMessageACK = function sendMessageACK() {
