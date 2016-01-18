@@ -31,6 +31,14 @@ io.on('connection', function (socket) {
     });
   });
 
+  socket.on('disconnect', function() {
+    io.sockets.in(socket.room).emit('chatroom-message', {
+      sender: 'the socket master',
+      username: '',
+      message: socket.username + ' has left the discussion.'
+    });
+  })
+
   // echo-ack, not currently in use
   socket.on('echo-ack', function (data, callback) {
     callback(data);
