@@ -1,5 +1,5 @@
 <main-navigation></main-navigation>
-<div class="container-fluid">
+<div class="container-fluid thread-container" id="thread-container">
   <div class="row sub-header">
     <div class="col-xs-12">
       <h3 class="text-center">
@@ -11,12 +11,12 @@
     <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
     {{ vm.alertMessage }}
   </div>
-  <ul class="row list-group">
+  <ul class="row list-group message-thread" id="message-thread-list">
     <li class="col-xs-12 list-group-item" ng-repeat="message in vm.messageThread" ng-class="message.selfClasses">
       <span ng-show="message.showNickname" class="bold">{{ message.username }}: </span>{{ message.content }}
     </li>
   </ul>
-  <div id="end-of-message-thread" class="scroll-buffer">
+  <div id="message-input-anchor">
   </div>
   <div class="row message-entry">
     <div class="col-xs-12">

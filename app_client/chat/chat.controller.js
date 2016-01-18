@@ -3,13 +3,12 @@
     .module('weMessageApp')
     .controller('chatCtrl', chatCtrl);
 
-  chatCtrl.$inject = ['$scope', '$socket', '$location', '$anchorScroll', '$uibModal'];
-  function chatCtrl($scope, $socket, $location, $anchorScroll, $uibModal) {
+  chatCtrl.$inject = ['$scope', '$socket', '$uibModal'];
+  function chatCtrl($scope, $socket, $uibModal) {
     var vm = this;
     vm.alertMessage = '';
     vm.messageThread = [];
     vm.userId = '';
-    $location.hash('end-of-message-thread');
 
     // set user id on connect
     $socket.on('set-id', function(data) {
@@ -29,7 +28,10 @@
         message.showNickname = false;
       }
       vm.messageThread.push(message);
-      $anchorScroll();
+
+      $('html, body').animate({
+        scrollTop: $('#message-input-anchor').offset().top
+      }, 'slow');
     });
 
     // send message on submit
