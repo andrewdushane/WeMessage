@@ -1,5 +1,5 @@
 (function() {
-  angular.module('weMessageApp', ['ngRoute', 'ngSanitize', 'socket.io']);
+  angular.module('weMessageApp', ['ngRoute', 'ngSanitize', 'socket.io', 'ui.bootstrap']);
 
   function config($routeProvider, $locationProvider, $socketProvider) {
     $routeProvider

@@ -3,9 +3,10 @@ var io = require('socket.io')(8080);
 var tmpId = 0;
 
 io.on('connection', function (socket) {
-  socket.username = 'Bobby';
-  console.log('User connected');
   socket.emit('set-id', socket.client.id);
+  socket.on('set-nickname', function(name) {
+    socket.username = name;
+  });
   socket.on('chatroom-message', function (data) {
     io.emit('chatroom-message', {
       sender: socket.client.id,

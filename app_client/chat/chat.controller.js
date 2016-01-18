@@ -3,8 +3,8 @@
     .module('weMessageApp')
     .controller('chatCtrl', chatCtrl);
 
-  chatCtrl.$inject = ['$scope', '$socket', '$location', '$anchorScroll'];
-  function chatCtrl($scope, $socket, $location, $anchorScroll) {
+  chatCtrl.$inject = ['$scope', '$socket', '$location', '$anchorScroll', '$uibModal'];
+  function chatCtrl($scope, $socket, $location, $anchorScroll, $uibModal) {
     var vm = this;
     vm.messageThread = [];
     vm.userId = '';
@@ -19,11 +19,13 @@
     $socket.on('chatroom-message', function (data) {
       var message = {
         content: data.message,
-        sentBySelf: '',
+        selfClasses: '',
+        showNickname: true,
         username: data.username
       };
       if(vm.userId == data.sender) {
-        message.sentBySelf = 'self-sent text-right';
+        message.selfClasses = 'self-sent text-right';
+        message.showNickname = false;
       }
       vm.messageThread.push(message);
       $anchorScroll();
@@ -34,10 +36,20 @@
       if(vm.messageToSend && vm.messageToSend != '') {
         $socket.emit('chatroom-message', vm.messageToSend);
         vm.messageToSend = '';
-      } else {
-        return false;
       }
+      return false;
     };
+
+    vm.chatNicknamePopup = function() {
+      var modalInstance = $uibModal.open({
+        backdrop: 'static',
+        keyboard: false,
+        templateUrl: '/chatNickname/chatNickname.view.html',
+        controller: 'chatNicknameCtrl as vm'
+      });
+    };
+
+    vm.chatNicknamePopup();
 
     // echo-ack, not currently in use
     vm.sendMessageACK = function sendMessageACK() {
