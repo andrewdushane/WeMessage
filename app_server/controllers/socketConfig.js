@@ -1,4 +1,4 @@
-var io = require('socket.io')(8080);
+var io = require('socket.io')(process.env.PORT || 8080);
 
 var tmpId = 0;
 

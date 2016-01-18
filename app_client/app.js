@@ -18,7 +18,11 @@
       enabled: true,
       requireBase: false
     });
-    $socketProvider.setConnectionUrl(window.location.hostname + ':8080');
+    var port = '';
+    if(window.location.hostname == 'localhost') {
+      port = ':8080';
+    }
+    $socketProvider.setConnectionUrl(window.location.hostname + port);
   }
 
   angular
