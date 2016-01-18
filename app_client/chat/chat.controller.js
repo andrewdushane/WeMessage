@@ -39,6 +39,10 @@
       if(vm.userId == data.sender) {
         message.selfClasses = 'self-sent text-right';
         message.showNickname = false;
+      // alter layout if it's a system message
+      } else if(data.sender == 'the socket master') {
+        message.selfClasses = 'bold text-center';
+        message.showNickname = false;
       }
       // display the message
       vm.messageThread.push(message);
@@ -72,9 +76,10 @@
           }
         }
       });
-      modalInstance.result.then(function(name) {
-        vm.alertMessage = 'Your nickname was set to ' + name + '.';
-      });
+      // alert of nickname set, not needed with message from socket server
+      // modalInstance.result.then(function(name) {
+      //   vm.alertMessage = 'Your nickname was set to ' + name + '.';
+      // });
     };
 
     if(!vm.nickname) {

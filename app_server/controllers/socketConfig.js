@@ -12,9 +12,9 @@ io.on('connection', function (socket) {
     socket.join(socket.room);
     socket.emit('nickname-set', socket.username);
     io.sockets.in(socket.room).emit('chatroom-message', {
-      sender: socket.client.id,
-      username: socket.username,
-      message: 'joined the chatroom.'
+      sender: 'the socket master',
+      username: '',
+      message: socket.username + ' joined the discussion.'
     });
   });
 
