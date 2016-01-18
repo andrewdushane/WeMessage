@@ -7,10 +7,12 @@
       </h3>
     </div>
   </div>
-  <div class="row list-group">
-    <div class="col-xs-12 list-group-item" ng-repeat="message in vm.messageThread">
-      <p>{{ message.content }}</p>
-    </div>
+  <ul class="row list-group">
+    <li class="col-xs-12 list-group-item lead" ng-repeat="message in vm.messageThread" ng-class="message.sentBySelf">
+      {{ message.content }}
+    </li>
+  </ul>
+  <div id="end-of-message-thread" class="scroll-buffer">
   </div>
   <div class="row message-entry">
     <div class="col-xs-12">
