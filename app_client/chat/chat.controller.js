@@ -3,13 +3,16 @@
     .module('weMessageApp')
     .controller('chatCtrl', chatCtrl);
 
-  chatCtrl.$inject = ['$scope', '$socket', '$uibModal'];
-  function chatCtrl($scope, $socket, $uibModal) {
+  chatCtrl.$inject = ['$scope', '$routeParams', '$socket', '$uibModal'];
+  function chatCtrl($scope, $routeParams, $socket, $uibModal) {
     var vm = this;
+    vm.roomid = $routeParams.roomid;
     vm.alertMessage = '';
-    vm.messageThread = vm.messageThread [];
-    vm.userId = vm.userId || localStorage.userId || '';
-    vm.nickname = vm.nickname || localStorage.nickname || '';
+    vm.messageThread = vm.messageThread || [];
+    // vm.userId = vm.userId || localStorage.userId || '';
+    // vm.nickname = vm.nickname || localStorage.nickname || '';
+    vm.userId = '';
+    vm.nickname = '';
 
     // set user id on connect
     $socket.on('set-id', function(id) {
@@ -48,7 +51,7 @@
 
     // send message on submit
     vm.sendMessage = function sendMessage() {
-      if(vm.messageToSend && vm.messageToSend != '') {
+      if(vm.messageToSend) {
         $socket.emit('chatroom-message', vm.messageToSend);
         vm.messageToSend = '';
       }
@@ -60,7 +63,14 @@
         backdrop: 'static',
         keyboard: false,
         templateUrl: '/chatNickname/chatNickname.view.html',
-        controller: 'chatNicknameCtrl as vm'
+        controller: 'chatNicknameCtrl as vm',
+        resolve: {
+          chatRoomData : function() {
+            return {
+              roomid : vm.roomid
+            };
+          }
+        }
       });
       modalInstance.result.then(function(name) {
         vm.alertMessage = 'Your nickname was set to ' + name + '.';

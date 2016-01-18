@@ -3,22 +3,26 @@
     .module('weMessageApp')
     .controller('chatNicknameCtrl', chatNicknameCtrl);
 
-  chatNicknameCtrl.$inject = ['$uibModalInstance', '$socket'];
-  function chatNicknameCtrl($uibModalInstance, $socket) {
+  chatNicknameCtrl.$inject = ['$uibModalInstance', '$socket', 'chatRoomData'];
+  function chatNicknameCtrl($uibModalInstance, $socket, chatRoomData) {
     var vm = this;
+    vm.roomid = chatRoomData.roomid;
     vm.onSubmit = function() {
       vm.formError = '';
       vm.formData = vm.formData || {};
       if(!vm.formData.nickname) {
         vm.formError = "Please enter a nickname."
       } else {
-        vm.setNickname(vm.formData);
+        vm.joinRoom(vm.formData);
       }
       return false;
     };
-    vm.setNickname = function(formData) {
+    vm.joinRoom = function(formData) {
       if(formData.nickname) {
-        $socket.emit('set-nickname', formData.nickname);
+        $socket.emit('join-room', {
+          roomid: vm.roomid,
+          nickname: formData.nickname
+        });
       }
       return false;
     };

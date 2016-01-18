@@ -1,14 +1,36 @@
 <main-navigation></main-navigation>
 <div class="container-fluid">
-  <div class="row sub-header">
-    <div class="col-xs-12">
+  <header class="row sub-header">
+    <div class="col-xs-12 text-center">
       <h3>
-        <a href="/#chat">
-          Start Instant Chat
-          <span class="pull-right"><i class="fa fa-chevron-right right-button"></i></span>
-          </a>
+        You message, I message. WeMessage!
       </h3>
     </div>
-  </div>
-</div>
+  </header>
+  <section class="row main-content">
+    <div class="col-xs-12">
+      <article class="panel panel-default vertical-buttons">
+        <div class="panel-heading text-center">
+          <h3 class="panel-title">Get Started</h3>
+        </div>
+        <div class="panel-body">
+          <div class="input-group">
+            <a ng-href="/#/chat/{{ vm.newRoomId }}">
+              <button type="button" class="btn btn-purple">Open Instant Chat</button>
+            </a>
+          </div>
+          <div class="input-group">
+            <a href="#">
+              <button type="button" class="btn btn-default">Log In</button>
+            </a>
+          </div>
+          <div class="input-group">
+            <a href="#">
+              <button type="button" class="btn btn-warning">Register</button>
+            </a>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
 <main-footer></main-footer>

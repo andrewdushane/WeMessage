@@ -1,13 +1,30 @@
 var io = require('socket.io')(8080);
 
+var rooms = [];
+
 io.on('connection', function (socket) {
+
   socket.emit('set-id', socket.client.id);
+
+  socket.on('join-room', function(data) {
+    socket.room = data.roomid;
+    socket.username = data.nickname;
+    socket.join(socket.room);
+    socket.emit('nickname-set', socket.username);
+    io.sockets.in(socket.room).emit('chatroom-message', {
+      sender: socket.client.id,
+      username: socket.username,
+      message: 'joined the chatroom.'
+    });
+  });
+
   socket.on('set-nickname', function(name) {
     socket.username = name;
     socket.emit('nickname-set', name)
   });
+
   socket.on('chatroom-message', function (data) {
-    io.emit('chatroom-message', {
+    io.sockets.in(socket.room).emit('chatroom-message', {
       sender: socket.client.id,
       username: socket.username,
       message: data

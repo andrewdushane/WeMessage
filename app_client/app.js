@@ -8,8 +8,8 @@
         controller: 'homeCtrl',
         controllerAs: 'vm'
       })
-      .when('/chat', {
-        templateUrl: 'chat/chat.view.html',
+      .when('/chat/:roomid', {
+        templateUrl: '/chat/chat.view.html',
         controller: 'chatCtrl',
         controllerAs: 'vm'
       })

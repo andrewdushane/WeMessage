@@ -8,7 +8,7 @@
 @footer-height: 50px;
 // offset for fixed navbar
 body {
-  padding-top: 50px;
+  padding-top: 96px;
   padding-bottom: 105px;
 }
 // undo bootstrap defaults
@@ -46,9 +46,15 @@ a:hover {
 .italics {
   font-style: italic;
 }
-.sub-header {
+.row.sub-header {
+  position: fixed;
+  right: 0;
+  left: 0;
+  top: 50px;
+  margin: 0;
   background: @purple4;
   color: #FFF;
+  z-index: 1000;
   a {
     color: #FFF;
   }
@@ -80,6 +86,30 @@ a:hover {
 .top-alert {
   margin-top: 1em;
 }
+.main-content {
+  margin-top: 3em;
+}
+.vertical-buttons {
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+  .input-group {
+    width: 100%;
+    margin: 1.5em 0;
+  }
+  .btn {
+    font-size: 1.5em;
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto;
+    display: block;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+  }
+  .panel-title {
+    font-size: 2em;
+  }
+}
 .thread-container {
   margin-bottom: 0;
 }
@@ -97,7 +127,9 @@ a:hover {
 .footer {
   position: fixed;
   bottom: 0;
-  width: 100%;
+  right: 0;
+  left: 0;
+  margin: 0;
   height: @footer-height;
   background-color: @purple1;
   small {
