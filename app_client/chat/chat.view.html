@@ -7,6 +7,10 @@
       </h3>
     </div>
   </div>
+  <div ng-show="vm.alertMessage" class="alert alert-warning alert-dismissible top-alert" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    {{ vm.alertMessage }}
+  </div>
   <ul class="row list-group">
     <li class="col-xs-12 list-group-item" ng-repeat="message in vm.messageThread" ng-class="message.selfClasses">
       <span ng-show="message.showNickname" class="bold">{{ message.username }}: </span>{{ message.content }}

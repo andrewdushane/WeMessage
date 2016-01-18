@@ -6,6 +6,7 @@ io.on('connection', function (socket) {
   socket.emit('set-id', socket.client.id);
   socket.on('set-nickname', function(name) {
     socket.username = name;
+    socket.emit('nickname-set', name)
   });
   socket.on('chatroom-message', function (data) {
     io.emit('chatroom-message', {

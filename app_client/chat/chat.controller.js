@@ -6,6 +6,7 @@
   chatCtrl.$inject = ['$scope', '$socket', '$location', '$anchorScroll', '$uibModal'];
   function chatCtrl($scope, $socket, $location, $anchorScroll, $uibModal) {
     var vm = this;
+    vm.alertMessage = '';
     vm.messageThread = [];
     vm.userId = '';
     $location.hash('end-of-message-thread');
@@ -46,6 +47,9 @@
         keyboard: false,
         templateUrl: '/chatNickname/chatNickname.view.html',
         controller: 'chatNicknameCtrl as vm'
+      });
+      modalInstance.result.then(function(name) {
+        vm.alertMessage = 'Your nickname was set to ' + name + '.';
       });
     };
 

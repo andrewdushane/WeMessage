@@ -13,7 +13,6 @@
         vm.formError = "Please enter a nickname."
       } else {
         vm.setNickname(vm.formData);
-        vm.closeModal();
       }
       return false;
     };
@@ -23,8 +22,11 @@
       }
       return false;
     };
-    vm.closeModal = function() {
-      $uibModalInstance.close();
-    }
+    vm.closeModal = function(name) {
+      $uibModalInstance.close(name);
+    };
+    $socket.on('nickname-set', function(name) {
+      vm.closeModal(name);
+    })
   }
 })();

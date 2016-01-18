@@ -24,6 +24,20 @@ a:hover {
   text-decoration: none;
   color: @purple4;
 }
+.btn-purple {
+  background-image: -webkit-linear-gradient(top,@purple4 0,@purple2 100%);
+  background-image: -o-linear-gradient(top,@purple4 0,@purple2 100%);
+  background-image: -webkit-gradient(linear,left top,left bottom,from(@purple4),to(@purple2));
+  background-image: linear-gradient(to bottom,@purple4 0,@purple2 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff7B52AB', endColorstr='#ff36175E', GradientType=0);
+  filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+  background-repeat: repeat-x;
+  border-color: @purple1;
+  color: #FFFFFF;
+}
+.btn-purple:hover {
+  color: #DDDDDD;
+}
 .bold {
   font-weight: 700;
 }
@@ -60,6 +74,9 @@ a:hover {
     transform:scale(1.5,1);
     -webkit-transform:scale(1.5,1);
   }
+}
+.top-alert {
+  margin-top: 1em;
 }
 .scroll-buffer {
   margin-bottom: 45px;
