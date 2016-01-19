@@ -10,6 +10,10 @@ require(path.join(__dirname, 'app_server/controllers', 'socketConfig.js'));
 var routes = require('./app_server/routes/index');
 
 var app = express();
+var port = process.env.SERVER_PORT || 3000
+app.listen(port, function() {
+  console.log('Server listening on port ' + port);
+});
 
 // view engine setup
 app.set('views', path.join(__dirname, 'app_server', 'views'));
