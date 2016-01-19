@@ -77,15 +77,37 @@
           }
         }
       });
-      // alert of nickname set, not needed with message from socket server
-      // modalInstance.result.then(function(name) {
-      //   vm.alertMessage = 'Your nickname was set to ' + name + '.';
-      // });
     };
 
     if(!vm.nickname) {
       vm.chatNicknamePopup();
     }
+
+    vm.emailInvitePopup = function() {
+      var modalInstance = $uibModal.open({
+        templateUrl: '/emailInvite/emailInvite.view.html',
+        controller: 'emailInviteCtrl as vm',
+        resolve: {
+          senderInfo : function() {
+            return {
+              sender : vm.nickname,
+              chatUrl : window.location.href
+            };
+          }
+        }
+      });
+      modalInstance.result.then(function(message) {
+        if(message) {
+          var alert = {
+            content: message,
+            selfClasses: 'bold text-center',
+            showNickname: false,
+            username: ''
+          };
+          vm.messageThread.push(alert);
+        }
+      });
+    };
 
     // echo-ack, not currently in use
     vm.sendMessageACK = function sendMessageACK() {

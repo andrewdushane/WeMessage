@@ -1,0 +1,37 @@
+<div class="modal-content">
+  <form role="form">
+    <div class="modal-header">
+      <h3 class="modal-title">Invite friends to chat!</h3>
+    </div>
+    <div class="modal-body">
+      <div class="row">
+        <div class="col-xs-12">
+          <div role="alert" ng-show="vm.formError" class="alert alert-danger">
+            {{ vm.formError }}
+          </div>
+        </div>
+        <div class="col-xs-12">
+          <p><span class="bigger bold">Share the chat URL:</span><br>
+          {{ vm.chatUrl }}</p>
+          <p class="bigger bold">Invite by email:</p>
+        </div>
+        <div class="form-group col-xs-12">
+          <label for="name">Your Name:</label>
+          <input name="name" type="text" class="form-control" ng-model="vm.formData.sender">
+        </div>
+        <div class="form-group col-xs-12">
+          <label for="recipient">Recipient Name:</label>
+          <input name="recipient" type="text" class="form-control" placeholder="Reipient Name" ng-model="vm.formData.recipientName">
+        </div>
+        <div class="form-group col-xs-12">
+          <label for="email">Recipient Email:</label>
+          <input name="email" type="email" class="form-control" placeholder="Reipient Email" ng-model="vm.formData.recipientEmail">
+        </div>
+        <div class="form-group col-xs-12 text-right">
+          <button ng-click="vm.onClickCancel()" type="button" class="btn btn-default">Cancel</button>
+          <button type="button" ng-click="vm.onClickSend()" class="btn btn-purple">Send Invite</button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
