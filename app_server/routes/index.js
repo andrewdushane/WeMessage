@@ -1,9 +1,7 @@
 var express = require('express');
 var router = express.Router();
+var sendEmailCtrl = require('../controllers/sendEmailCtrl');
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
-});
+router.post('/invite-to-chat', sendEmailCtrl.inviteToChat)
 
 module.exports = router;

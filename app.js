@@ -1,12 +1,13 @@
 var express = require('express');
 var path = require('path');
+require('dotenv').load();
 var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 require(path.join(__dirname, 'app_server/controllers', 'socketConfig.js'));
 
-// var routes = require('./app_server/routes/index');
+var routes = require('./app_server/routes/index');
 
 var app = express();
 
@@ -24,7 +25,7 @@ app.use(require('less-middleware')(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'app_client')));
 
-// app.use('/', routes);
+app.use('/email', routes);
 // Send static html file, routing handled on client
 app.use(function(req, res) {
   res.sendFile(path.join(__dirname, 'app_client', 'index.html'));
