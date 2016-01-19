@@ -6,6 +6,7 @@
   chatCtrl.$inject = ['$scope', '$routeParams', '$socket', '$uibModal'];
   function chatCtrl($scope, $routeParams, $socket, $uibModal) {
     var vm = this;
+    vm.chatName = 'Instant Chat';
     vm.roomid = $routeParams.roomid;
     vm.alertMessage = '';
     vm.messageThread = vm.messageThread || [];
