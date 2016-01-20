@@ -11,7 +11,7 @@
     vm.alertMessage = '';
     vm.messageThread = vm.messageThread || [];
     // vm.userId = vm.userId || localStorage.userId || '';
-    vm.nickname = vm.nickname || localStorage.nickname || '';
+    // vm.nickname = vm.nickname || localStorage.nickname || '';
     vm.userId = '';
     // vm.nickname = '';
 
