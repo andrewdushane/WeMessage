@@ -6,8 +6,17 @@
   chatCtrl.$inject = ['$scope', '$routeParams', '$socket', '$uibModal'];
   function chatCtrl($scope, $routeParams, $socket, $uibModal) {
     var vm = this;
-    vm.chatName = 'Instant Chat';
+
+    vm.setRoomName = function(roomid) {
+      if(roomid.search('-') != -1) {
+        return roomid.split('-').join(' ');
+      } else {
+        return false;
+      }
+    };
+
     vm.roomid = $routeParams.roomid;
+    vm.chatName = vm.setRoomName(vm.roomid) || 'Instant Chat';
     vm.alertMessage = '';
     vm.messageThread = vm.messageThread || [];
     // vm.userId = vm.userId || localStorage.userId || '';
