@@ -17,23 +17,24 @@
       url: vm.contactsUrl
     })
     .then(function successCallback(response) {
-      console.log(response.data);
       vm.contacts = response.data;
       for(var i= 0; i < vm.contacts.length; i++) {
-        vm.getLatestMessage(vm.contacts[i].id);
+        var latest = vm.getLatestMessage(vm.contacts[i].id, i);
       }
     }, function errorCallback(response) {
       console.log(response);
     });
 
-    vm.getLatestMessage = function(contactid) {
+    vm.getLatestMessage = function(contactid, index) {
       var threadUrl = vm.apiUrl + '/messages/sender/' + vm.accountid + '/recipient/' + contactid + '/latest';
       $http({
         method: 'GET',
         url: threadUrl
       })
       .then(function successCallback(response) {
-        console.log(response.data);
+        if(response.data) {
+          vm.contacts[index].latestMessage = response.data;
+        }
       }, function errorCallback(response) {
         console.log(response);
       });
