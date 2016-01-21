@@ -13,6 +13,11 @@
         controller: 'chatCtrl',
         controllerAs: 'vm'
       })
+      .when('/account/:accountid/contacts', {
+        templateUrl: '/contacts/contacts.view.html',
+        controller: 'contactsCtrl',
+        controllerAs: 'vm'
+      })
       .otherwise({redirectTo: '/'});
     $locationProvider.html5Mode({
       enabled: true,
