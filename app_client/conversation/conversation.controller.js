@@ -15,11 +15,12 @@
       name: $routeParams.contactName,
       shortName: $routeParams.contactName.split(' ')[0]
     };
-    vm.threadUrl = constants.apiUrl + '/messages/sender/' + vm.accountid + '/recipient/' + vm.contact.id
+    vm.threadUrl = constants.apiUrl + '/messages/sender/' + vm.accountid + '/recipient/' + vm.contact.id;
+    vm.newMessageUrl = constants.apiUrl + '/messages/';
 
     // Store name in localStorage on login, retrieve from localStorage here
     // vm.accountName = localStorage.getItem('accountName');
-    vm.accountName = 'Andy'
+    vm.accountName = 'Andy';
 
     vm.alertMessage = '';
 
@@ -96,7 +97,23 @@
     // send message on submit
     vm.sendMessage = function sendMessage() {
       if(vm.messageToSend) {
+        // send message to conversation chat
         $socket.emit('chatroom-message', vm.messageToSend);
+        // store message in the database
+        $http({
+          method: 'POST',
+          url: vm.newMessageUrl,
+          data: {
+            sender_account: vm.accountid,
+            recipient_account: vm.contact.id,
+            content: vm.messageToSend
+          }
+        })
+        .then(function successCallback(response) {
+          console.log(response);
+        }, function errorCallback(response) {
+          console.log(response);
+        });
         vm.messageToSend = '';
       }
       return false;
