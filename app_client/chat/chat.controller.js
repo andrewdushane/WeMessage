@@ -75,7 +75,7 @@
       var modalInstance = $uibModal.open({
         backdrop: 'static',
         keyboard: false,
-        templateUrl: '/chatNickname/chatNickname.view.html',
+        templateUrl: '/modals/chatNickname/chatNickname.view.html',
         controller: 'chatNicknameCtrl as vm',
         resolve: {
           chatRoomData : function() {
@@ -93,7 +93,7 @@
 
     vm.emailInvitePopup = function() {
       var modalInstance = $uibModal.open({
-        templateUrl: '/emailInvite/emailInvite.view.html',
+        templateUrl: '/modals/emailInvite/emailInvite.view.html',
         controller: 'emailInviteCtrl as vm',
         resolve: {
           senderInfo : function() {
