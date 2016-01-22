@@ -3,8 +3,8 @@
     .module('weMessageApp')
     .controller('homeCtrl', homeCtrl);
 
-  homeCtrl.$inject = ['$scope'];
-  function homeCtrl($scope) {
+  homeCtrl.$inject = ['$scope', '$uibModal'];
+  function homeCtrl($scope, $uibModal) {
     var vm = this;
     function randString(x){
       var s = "";
@@ -16,5 +16,11 @@
     }
     // Generate new random string for chat-room ID
     vm.newRoomId = randString(20);
+    vm.registrationPopup = function() {
+      var modalInstance = $uibModal.open({
+        templateUrl: '/modals/register/register.view.html',
+        controller: 'registerCtrl as vm'
+      });
+    };
   };
 })();
