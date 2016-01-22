@@ -18,6 +18,11 @@
         controller: 'contactsCtrl',
         controllerAs: 'vm'
       })
+      .when('/account/:accountid/thread/:contactName/:contactid', {
+        templateUrl: '/conversation/conversation.view.html',
+        controller: 'conversationCtrl',
+        controllerAs: 'vm'
+      })
       .otherwise({redirectTo: '/'});
     $locationProvider.html5Mode({
       enabled: true,

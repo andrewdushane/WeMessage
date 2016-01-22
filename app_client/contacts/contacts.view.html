@@ -13,9 +13,12 @@
     {{ vm.alertMessage }}
   </div>
   <ul class="row list-group contacts-list" id="contacts-list">
-    <li class="col-xs-12 list-group-item" ng-repeat="contact in vm.contacts">
-      <span class="contact-name bold">{{ contact.name }}</span>
-      <br>{{ contact.latestMessage.content | limitTo : 50 }}&nbsp;<span class="pull-right"><small>{{ contact.latestMessage.created_at | date: 'mediumDate' }}</small> <i class="fa fa-chevron-right contact-arrow"></i></span>
-    </li>
+    <a ng-repeat="contact in vm.contacts" ng-href="{{ contact.conversationUrl }}">
+      <li class="col-xs-12 list-group-item">
+        <span class="contact-name bold">{{ contact.name }}</span>
+        <br>{{ contact.latestMessage.content | limitTo : 50 }}&nbsp;<span class="pull-right"><small>{{ contact.latestMessage.created_at | date: 'mediumDate' }}</small> <i class="fa fa-chevron-right contact-arrow"></i></span>
+      </li>
+    </a>
   </ul>
 </div>
+<main-footer></main-footer>

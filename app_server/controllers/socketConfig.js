@@ -11,13 +11,15 @@ io.on('connection', function (socket) {
     socket.username = data.nickname;
     socket.join(socket.room);
     socket.emit('nickname-set', socket.username);
-    socket.broadcast.to(socket.room).emit('chatroom-message', {
-      sender: 'the socket master',
-      username: '',
-      message: socket.username + ' joined the discussion.'
-    });
-    var greeting = 'Welcome, ' + socket.username + '! Have fun and please, keep it friendly.';
-    systemMessageToSender(socket, greeting);
+    if(!data.conversation) {
+      socket.broadcast.to(socket.room).emit('chatroom-message', {
+        sender: 'the socket master',
+        username: '',
+        message: socket.username + ' joined the discussion.'
+      });
+      var greeting = 'Welcome, ' + socket.username + '! Have fun and please, keep it friendly.';
+      systemMessageToSender(socket, greeting);
+    }
   });
 
   socket.on('set-nickname', function(name) {

@@ -19,7 +19,9 @@
     .then(function successCallback(response) {
       vm.contacts = response.data;
       for(var i= 0; i < vm.contacts.length; i++) {
-        var latest = vm.getLatestMessage(vm.contacts[i].id, i);
+        var id = vm.contacts[i].id
+        vm.contacts[i].conversationUrl = '/account/' + vm.accountid + '/thread/' + vm.contacts[i].name + '/' + id
+        var latest = vm.getLatestMessage(id, i);
       }
     }, function errorCallback(response) {
       console.log(response);
@@ -40,6 +42,8 @@
       });
     };
 
+    // TO DO: Set up new email invite for inviting to join WeMessage
+    // (this one invites to a chatroom)
     vm.emailInvitePopup = function() {
       var modalInstance = $uibModal.open({
         templateUrl: '/emailInvite/emailInvite.view.html',
