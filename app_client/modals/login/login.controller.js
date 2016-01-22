@@ -1,25 +1,24 @@
 (function() {
   angular
     .module('weMessageApp')
-    .controller('registerCtrl', registerCtrl);
+    .controller('loginCtrl', loginCtrl);
 
-  registerCtrl.$inject = ['$uibModalInstance', '$http', '$location', 'constants'];
-  function registerCtrl($uibModalInstance, $http, $location, constants) {
+  loginCtrl.$inject = ['$uibModalInstance', '$http', '$location', 'constants'];
+  function loginCtrl($uibModalInstance, $http, $location, constants) {
     var vm = this;
     vm.formData = {};
-    vm.registerUrl = constants.apiUrl + '/accounts/'
-    vm.onClickRegister = function() {
+    vm.loginUrl = constants.apiUrl + '/authenticate/'
+    vm.onClickLogin = function() {
       vm.formError = '';
       vm.formData = vm.formData || {};
-      if(!vm.formData.name || !vm.formData.email || !vm.formData.password) {
-        vm.formError = "Please complete all required fields.";
+      if(!vm.formData.email || !vm.formData.password) {
+        vm.formError = "Please complete all fields.";
       } else {
         console.log('form submitted');
         $http({
           method: 'POST',
-          url: vm.registerUrl,
+          url: vm.loginUrl,
           data: {
-            name: vm.formData.name,
             email: vm.formData.email,
             password: vm.formData.password
           }
@@ -31,13 +30,9 @@
           var contactsPage = '/account/' + response.data.id + '/contacts';
           $location.path(contactsPage);
         }, function errorCallback(response) {
-          if(response.data.email) {
-            vm.formError = 'We already have an account associated with that email address.'
-          }
-          else if(response.data.password) {
-            vm.formError = 'Please use a password of six characters or more.'
-          } else {
-            vm.formError = 'There was an error processing your registration, please try again later.'
+          console.log(response);
+          if(response.data.errors) {
+            vm.formError = response.data.errors[0];
           }
         });
 

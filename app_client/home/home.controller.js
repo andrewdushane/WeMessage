@@ -22,5 +22,11 @@
         controller: 'registerCtrl as vm'
       });
     };
+    vm.loginPopup = function() {
+      var modalInstance = $uibModal.open({
+        templateUrl: '/modals/login/login.view.html',
+        controller: 'loginCtrl as vm'
+      });
+    };
   };
 })();

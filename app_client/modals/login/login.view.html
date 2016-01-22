@@ -1,0 +1,28 @@
+<div class="modal-content">
+  <form role="form" ng-submit="vm.onClickLogin()">
+    <div class="modal-header">
+      <h3 class="modal-title">Log In to Your WeMessage Account</h3>
+    </div>
+    <div class="modal-body">
+      <div class="row">
+        <div class="col-xs-12">
+          <div ng-show="vm.formError" role="alert" class="alert alert-danger">
+            {{ vm.formError }}
+          </div>
+        </div>
+        <div class="form-group col-xs-12">
+          <label for="email">Email:</label>
+          <input name="email" type="email" class="form-control" ng-model="vm.formData.email" placeholder="Email">
+        </div>
+        <div class="form-group col-xs-12">
+          <label for="password">Password:</label>
+          <input name="password" type="password" class="form-control" placeholder="Password" ng-model="vm.formData.password">
+        </div>
+        <div class="form-group col-xs-12 text-right">
+          <button ng-click="vm.onClickCancel()" type="button" class="btn btn-default">Cancel</button>
+          <button type="submit" class="btn btn-purple">Log In</button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
