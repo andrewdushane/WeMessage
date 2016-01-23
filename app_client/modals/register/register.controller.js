@@ -26,8 +26,10 @@
         })
         .then(function successCallback(response) {
           vm.formError = '';
-          localStorage.setItem('accountid', response.data.id);
-          localStorage.setItem('accountName', response.data.name);
+          localStorage.setItem('loggedIn', 'true');
+          localStorage.setItem('authToken', response.data.auth_token);
+          localStorage.setItem('accountid', response.data.account.id);
+          localStorage.setItem('accountName', response.data.account.name);
           var contactsPage = '/account/' + response.data.id + '/contacts';
           $location.path(contactsPage);
         }, function errorCallback(response) {
