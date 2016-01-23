@@ -14,7 +14,10 @@
     // Get contact list for this account
     $http({
       method: 'GET',
-      url: vm.contactsUrl
+      url: vm.contactsUrl,
+      headers: {
+         'Authorization': 'Bearer ' + localStorage.getItem('authToken')
+       },
     })
     .then(function successCallback(response) {
       vm.contacts = response.data;

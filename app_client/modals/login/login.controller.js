@@ -25,15 +25,15 @@
         })
         .then(function successCallback(response) {
           vm.formError = '';
-          console.log(response);
+          // store account information in localStorage
           localStorage.setItem('loggedIn', 'true');
           localStorage.setItem('authToken', response.data.auth_token);
           localStorage.setItem('accountid', response.data.account.id);
           localStorage.setItem('accountName', response.data.account.name);
-          var contactsPage = '/account/' + response.data.id + '/contacts';
+          // redirect to contacts page 
+          var contactsPage = '/account/' + response.data.account.id + '/contacts';
           $location.path(contactsPage);
         }, function errorCallback(response) {
-          console.log(response);
           if(response.data.errors) {
             vm.formError = response.data.errors[0];
           }

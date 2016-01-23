@@ -19,8 +19,7 @@
     vm.newMessageUrl = constants.apiUrl + '/messages/';
 
     // Store name in localStorage on login, retrieve from localStorage here
-    // vm.accountName = localStorage.getItem('accountName');
-    vm.accountName = 'Andy';
+    vm.accountName = localStorage.getItem('accountName');
 
     vm.alertMessage = '';
 
@@ -28,15 +27,20 @@
     // Get message thread for the logged in account and this contact
     $http({
       method: 'GET',
-      url: vm.threadUrl
+      url: vm.threadUrl,
+      headers: {
+        'Authorization': 'Bearer ' + localStorage.getItem('authToken')
+      }
     })
     .then(function successCallback(response) {
       vm.messageThread = response.data;
       if(vm.messageThread) {
         for(var i = 0; i < vm.messageThread.length; i++) {
+          // set display style for messages sent from logged in user
           if(vm.messageThread[i].sender_account == vm.accountid) {
             vm.messageThread[i].selfClasses = 'self-sent text-right';
             vm.messageThread[i].showNickname = false;
+            // set display style for messages from contact
           } else {
             vm.messageThread[i].showNickname = true;
             vm.messageThread[i].username = vm.contact.shortName;
@@ -47,6 +51,7 @@
       console.log(response);
     });
 
+    // create socket room id for this conversation
     var sortedIds = [vm.accountid, vm.contact.id];
     sortedIds.sort(function(a, b) {
       return a - b;
