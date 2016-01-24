@@ -13,7 +13,7 @@
         controller: 'chatCtrl',
         controllerAs: 'vm'
       })
-      .when('/account/:accountid/contacts', {
+      .when('/contacts', {
         templateUrl: '/contacts/contacts.view.html',
         controller: 'contactsCtrl',
         controllerAs: 'vm'
@@ -21,6 +21,11 @@
       .when('/account/:accountid/thread/:contactName/:contactid', {
         templateUrl: '/conversation/conversation.view.html',
         controller: 'conversationCtrl',
+        controllerAs: 'vm'
+      })
+      .when('/account-info/:contactid', {
+        templateUrl: '/contactDetail/contactDetail.view.html',
+        controller: 'contactDetailCtrl',
         controllerAs: 'vm'
       })
       .otherwise({redirectTo: '/'});

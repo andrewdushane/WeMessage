@@ -30,8 +30,7 @@
           localStorage.setItem('authToken', response.data.auth_token);
           localStorage.setItem('accountid', response.data.account.id);
           localStorage.setItem('accountName', response.data.account.name);
-          var contactsPage = '/account/' + response.data.account.id + '/contacts';
-          $location.path(contactsPage);
+          $location.path('/contacts');
         }, function errorCallback(response) {
           if(response.data.email) {
             vm.formError = 'We already have an account associated with that email address.'

@@ -30,8 +30,8 @@
           localStorage.setItem('authToken', response.data.auth_token);
           localStorage.setItem('accountid', response.data.account.id);
           localStorage.setItem('accountName', response.data.account.name);
-          // redirect to contacts page 
-          var contactsPage = '/account/' + response.data.account.id + '/contacts';
+          // redirect to contacts page
+          var contactsPage = '/contacts';
           $location.path(contactsPage);
         }, function errorCallback(response) {
           if(response.data.errors) {

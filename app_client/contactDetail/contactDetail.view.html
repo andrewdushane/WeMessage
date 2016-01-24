@@ -3,8 +3,8 @@
   <div class="row sub-header">
     <div class="col-xs-12">
       <h3 class="text-center">
+        <span class="pull-left clickable"><a href="/contacts"><i class="fa fa-chevron-left"></i></a></span>
         {{ vm.contact.name }}
-        <span class="pull-right clickable"><a ng-href="{{ vm.contact.url }}"><i class="fa fa-user"></i></a></span>
       </h3>
     </div>
   </div>
@@ -12,10 +12,6 @@
     <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
     {{ vm.alertMessage }}
   </div>
-  <ul class="row list-group message-thread" id="message-thread-list">
-    <li class="col-xs-12 list-group-item" ng-repeat="message in vm.messageThread" ng-class="message.selfClasses">
-      <span ng-show="message.showNickname" class="bold">{{ message.username }}: </span>{{ message.content }}
-    </li>
-  </ul>
-  <message-entry></message-entry>
+
 </div>
+<main-footer></main-footer>

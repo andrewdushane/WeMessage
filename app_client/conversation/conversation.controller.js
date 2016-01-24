@@ -13,7 +13,8 @@
     vm.contact = {
       id: $routeParams.contactid,
       name: $routeParams.contactName,
-      shortName: $routeParams.contactName.split(' ')[0]
+      shortName: $routeParams.contactName.split(' ')[0],
+      url: '/account-info/' + $routeParams.contactid
     };
     vm.threadUrl = constants.apiUrl + '/messages/sender/' + vm.accountid + '/recipient/' + vm.contact.id;
     vm.newMessageUrl = constants.apiUrl + '/messages/';

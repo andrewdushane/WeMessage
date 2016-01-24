@@ -3,14 +3,14 @@
     .module('weMessageApp')
     .controller('contactsCtrl', contactsCtrl);
 
-  contactsCtrl.$inject = ['$scope', '$routeParams', '$http', '$uibModal', 'constants'];
-  function contactsCtrl($scope, $routeParams, $http, $uibModal, constants) {
+  contactsCtrl.$inject = ['$scope', '$http', '$uibModal', 'constants'];
+  function contactsCtrl($scope, $http, $uibModal, constants) {
     var vm = this;
 
-    vm.accountid = $routeParams.accountid;
+    vm.accountid = localStorage.getItem('accountid');
     vm.alertMessage = '';
     vm.apiUrl = constants.apiUrl;
-    vm.contactsUrl = vm.apiUrl + '/accounts/' + vm.accountid + '/contacts';
+    vm.contactsUrl = vm.apiUrl + '/account-contacts';
     // Get contact list for this account
     $http({
       method: 'GET',
