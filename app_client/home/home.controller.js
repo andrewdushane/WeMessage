@@ -16,6 +16,12 @@
     }
     // Generate new random string for chat-room ID
     vm.newRoomId = randString(20);
+    vm.newChatPopup = function() {
+      var modalInstance = $uibModal.open({
+        templateUrl: '/modals/newChat/newChat.view.html',
+        controller: 'newChatCtrl as vm'
+      });
+    };
     vm.registrationPopup = function() {
       var modalInstance = $uibModal.open({
         templateUrl: '/modals/register/register.view.html',

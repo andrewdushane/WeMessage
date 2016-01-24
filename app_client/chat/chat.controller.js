@@ -7,13 +7,17 @@
   function chatCtrl($scope, $routeParams, $socket, $uibModal) {
     var vm = this;
 
+    // vm.setRoomName = function(roomid) {
+    //   if(roomid.search('-') != -1) {
+    //
+    //   } else {
+    //     return false;
+    //   }
+    // };
+
     vm.setRoomName = function(roomid) {
-      if(roomid.search('-') != -1) {
-        return roomid.split('-').join(' ');
-      } else {
-        return false;
-      }
-    };
+      return roomid.split('-').join(' ');
+    }
 
     vm.roomid = $routeParams.roomid;
     vm.chatName = vm.setRoomName(vm.roomid) || 'Instant Chat';

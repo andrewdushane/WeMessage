@@ -1,0 +1,19 @@
+<div class="modal-content">
+  <form ng-submit="vm.onSubmit()" class="form-horizontal">
+    <div class="modal-header">
+      <h4 id="myModalLabel" class="modal-title">Give your chat a name.<br><small>After creating your chat, use the <i class="fa fa-user-plus text-purple"></i> icon in the upper right to invite others to join.</small></h4>
+    </div>
+    <div class="modal-body">
+      <p ng-show="vm.formError" class="text-danger">{{ vm.formError }}</p>
+      <div class="form-group">
+        <label for="room-name" class="col-xs-3 control-label">Room Name</label>
+        <div class="col-xs-9">
+          <input id="room-name" name="room-name" ng-model="vm.formData.roomName" class="form-control"/>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="submit" class="btn btn-purple">Set Nickname</button>
+    </div>
+  </form>
+</div>
