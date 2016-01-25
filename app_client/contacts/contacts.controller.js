@@ -34,7 +34,10 @@
       var threadUrl = vm.apiUrl + '/messages/sender/' + vm.accountid + '/recipient/' + contactid + '/latest';
       $http({
         method: 'GET',
-        url: threadUrl
+        url: threadUrl,
+        headers: {
+           'Authorization': 'Bearer ' + localStorage.getItem('authToken')
+         }
       })
       .then(function successCallback(response) {
         if(response.data) {
