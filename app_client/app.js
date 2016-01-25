@@ -28,6 +28,11 @@
         controller: 'contactDetailCtrl',
         controllerAs: 'vm'
       })
+      .when('/chat-home', {
+        templateUrl: '/static/static.view.html',
+        controller: 'chatHomeCtrl',
+        controllerAs: 'vm'
+      })
       .otherwise({redirectTo: '/'});
     $locationProvider.html5Mode({
       enabled: true,
