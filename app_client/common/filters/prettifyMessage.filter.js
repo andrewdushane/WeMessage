@@ -59,11 +59,9 @@
     // Filter message
     return function filterMessage(message) {
       var linked = linkify(message)
-      var imaged = displayImages(linked.content, linked.links);
-      message = imaged.content;
-      var links = imaged.links;
-      if(links) {
-        console.log(links);
+      if(linked.links) {
+        var imaged = displayImages(linked.content, linked.links);
+        message = imaged.content;
       }
       return message;
    };
