@@ -14,7 +14,7 @@
   </div>
   <ul class="row list-group message-thread" id="message-thread-list">
     <li class="col-xs-12 list-group-item" ng-repeat="message in vm.messageThread" ng-class="message.selfClasses">
-      <span ng-show="message.showNickname" class="bold">{{ message.username }}: </span>{{ message.content }}
+      <span ng-show="message.showNickname" class="bold">{{ message.username }}: </span><span ng-bind-html='message.content | prettifyMessage'></span>
     </li>
   </ul>
   <message-entry></message-entry>
