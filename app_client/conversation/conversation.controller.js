@@ -113,7 +113,10 @@
             sender_account: vm.accountid,
             recipient_account: vm.contact.id,
             content: vm.messageToSend
-          }
+          },
+          headers: {
+             'Authorization': 'Bearer ' + localStorage.getItem('authToken')
+           }
         })
         .then(function successCallback(response) {
           console.log(response);
