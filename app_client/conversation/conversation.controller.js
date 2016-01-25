@@ -128,5 +128,7 @@
       return false;
     };
 
+    vm.onClickBack = constants.onClickBack;
+
   };
 })();

@@ -48,6 +48,8 @@
       });
     };
 
+    vm.onClickBack = constants.onClickBack;
+
     // TO DO: Set up new email invite for inviting to join WeMessage
     // (this one invites to a chatroom)
     vm.emailInvitePopup = function() {

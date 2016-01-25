@@ -19,5 +19,6 @@
       }, function errorCallback(response) {
         console.log(response);
       });
+      vm.onClickBack = constants.onClickBack;
     }
 })();

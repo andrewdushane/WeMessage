@@ -5,8 +5,12 @@
 
   function constants() {
     var apiUrl = 'http://localhost:3000';
+    var onClickBack = function() {
+      window.history.back();
+    };
     return {
-      apiUrl : apiUrl
+      apiUrl : apiUrl,
+      onClickBack : onClickBack
     };
   };
 })();
