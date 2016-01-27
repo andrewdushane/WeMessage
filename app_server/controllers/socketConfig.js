@@ -2,6 +2,8 @@ var io = require('socket.io')(8080);
 
 var rooms = [];
 
+var users = [];
+
 io.on('connection', function (socket) {
 
   socket.emit('set-id', socket.client.id);
@@ -10,6 +12,11 @@ io.on('connection', function (socket) {
     socket.room = data.roomid;
     socket.username = data.nickname;
     socket.join(socket.room);
+    users.push({
+      id: socket.id,
+      room: socket.room,
+      username: socket.username
+    });
     socket.emit('nickname-set', socket.username);
     if(!data.conversation) {
       socket.broadcast.to(socket.room).emit('chatroom-message', {
@@ -21,6 +28,16 @@ io.on('connection', function (socket) {
       systemMessageToSender(socket, greeting);
     }
   });
+
+  socket.on('request-sockets-in-room', function() {
+    var inRoom = [];
+    for(var i = 0; i < users.length; i++) {
+      if(users[i].room == socket.room) {
+        inRoom.push(users[i].username);
+      }
+    }
+    socket.emit('deliver-sockets-in-room', inRoom);
+  })
 
   socket.on('set-nickname', function(name) {
     socket.username = name;
@@ -47,6 +64,12 @@ io.on('connection', function (socket) {
       username: '',
       message: socket.username + ' has left the discussion.'
     });
+    for(var i = 0; i < users.length; i++) {
+      if(users[i].id == socket.id) {
+        users.splice(i, 1);
+        break;
+      }
+    }
   })
 
   // echo-ack, not currently in use

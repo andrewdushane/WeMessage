@@ -19,6 +19,7 @@
     // vm.nickname = vm.nickname || localStorage.nickname || '';
     vm.userId = vm.userId || localStorage.getItem('userId') || '';
     // vm.nickname = '';
+    vm.chatRoomUsers = [];
 
     // set user id on connect
     $socket.on('set-id', function(id) {
@@ -29,7 +30,7 @@
     $socket.on('nickname-set', function(name) {
       vm.nickname = name;
       localStorage.nickname = name;
-    })
+    });
 
     // display messages as they come in
     $socket.on('chatroom-message', function (data) {
@@ -96,6 +97,14 @@
     if(!vm.nickname) {
       vm.chatNicknamePopup();
     }
+
+    vm.getUsers = function getUsers() {
+      $socket.emit('request-sockets-in-room');
+    }
+
+    $socket.on('deliver-sockets-in-room', function(users) {
+      vm.chatRoomUsers = users;
+    })
 
     vm.emailInvitePopup = function() {
       var modalInstance = $uibModal.open({
