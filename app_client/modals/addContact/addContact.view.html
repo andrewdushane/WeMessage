@@ -1,0 +1,26 @@
+<div class="modal-content">
+  <div class="modal-header">
+    <h4 class="modal-title">Search for contacts by email address.<br></h4>
+  </div>
+  <div class="modal-body">
+    <div class="form-group">
+      <label for="query" class="col-xs-2 control-label">Email:</label>
+      <div class="col-xs-10">
+        <input id="query" name="query" ng-model="vm.formData.query" ng-keyup="vm.queryKeyUp()" class="form-control"/>
+      </div>
+    </div>
+    <ul class="row list-group found-contacts" id="found-contacts">
+      <li class="col-xs-12 list-group-item" ng-repeat="contact in vm.foundContacts">
+          <span class="contact-name bold">{{ contact.name }}</span>
+          <span class="pull-right">
+            <i ng-show="!contact.added" class="fa fa-user-times clickable dark" ng-click="vm.selectContact(contact)"></i>
+            <i ng-show="contact.added" class="fa fa-user-plus clickable dark selected" ng-click="vm.selectContact(contact)"></i>
+          </span>
+          <br>{{ contact.email }}&nbsp;
+      </li>
+    </ul>
+  </div>
+  <div class="modal-footer">
+    <button type="submit" class="btn btn-purple" ng-show="vm.numSelected > 0" ng-click="vm.clickAdd()">Add Contact<span ng-show="vm.numSelected > 1">s</span></button>
+  </div>
+</div>

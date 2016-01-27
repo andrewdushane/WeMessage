@@ -52,28 +52,15 @@
 
     // TO DO: Set up new email invite for inviting to join WeMessage
     // (this one invites to a chatroom)
-    vm.emailInvitePopup = function() {
+    vm.addContactPopup = function() {
       var modalInstance = $uibModal.open({
-        templateUrl: '/emailInvite/emailInvite.view.html',
-        controller: 'emailInviteCtrl as vm',
-        resolve: {
-          senderInfo : function() {
-            return {
-              sender : vm.nickname,
-              chatUrl : window.location.href
-            };
-          }
-        }
+        templateUrl: '/modals/addContact/addContact.view.html',
+        controller: 'addContactCtrl as vm',
       });
-      modalInstance.result.then(function(message) {
-        if(message) {
-          var alert = {
-            content: message,
-            selfClasses: 'bold text-center',
-            showNickname: false,
-            username: ''
-          };
-          vm.messageThread.push(alert);
+      modalInstance.result.then(function(contact) {
+        if(contact.id) {
+          contact.conversationUrl = '/account/' + vm.accountid + '/thread/' + contact.name + '/' + contact.id;
+          vm.contacts.push(contact);
         }
       });
     };

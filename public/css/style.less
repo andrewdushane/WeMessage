@@ -31,6 +31,18 @@ img {
 .clickable {
   cursor: pointer;
 }
+.clickable:hover {
+  color: @purple1;
+}
+.clickable.dark:hover {
+  color: @purple4;
+}
+.clickable.dark.selected {
+  color: @purple4;
+}
+.clickable.dark.selected:hover {
+  color: #000000;
+}
 .bigger {
   font-size: 1.2em;
 }
@@ -149,6 +161,15 @@ img {
     word-wrap: break-word;
     word-break: break-all;
   }
+}
+.found-contacts {
+  .fa-user-times, .fa-user-plus {
+    margin-top: 0.25em;
+    font-size: 2em;
+  }
+}
+.modal-body .list-group {
+  margin-bottom: 0;
 }
 .contacts-list a {
   color: #000;

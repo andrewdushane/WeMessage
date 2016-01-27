@@ -47,6 +47,7 @@
             vm.messageThread[i].username = vm.contact.shortName;
           }
         }
+        vm.scrollToEnd();
       }
     }, function errorCallback(response) {
       console.log(response);
@@ -94,10 +95,7 @@
       // display the message
       vm.messageThread.push(message);
       // scroll to the bottom of the message thread
-      // jQuery - because anchorScroll != 'clean'
-      $('html, body').animate({
-        scrollTop: $('#message-input-anchor').offset().top
-      }, 'slow');
+      vm.scrollToEnd();
     });
 
     // send message on submit
@@ -126,6 +124,12 @@
         vm.messageToSend = '';
       }
       return false;
+    };
+
+    vm.scrollToEnd = function() {
+      $('html, body').animate({
+        scrollTop: $('#message-input-anchor').offset().top
+      }, 'slow');
     };
 
     vm.onClickBack = constants.onClickBack;
