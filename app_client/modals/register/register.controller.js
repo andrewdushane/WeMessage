@@ -7,7 +7,7 @@
   function registerCtrl($uibModalInstance, $http, $location, constants) {
     var vm = this;
     vm.formData = {};
-    vm.registerUrl = constants.apiUrl + '/accounts/'
+    vm.registerUrl = constants.apiUrl + '/register/'
     vm.onClickRegister = function() {
       vm.formError = '';
       vm.formData = vm.formData || {};
