@@ -13,6 +13,11 @@
     <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
     {{ vm.alertMessage }}
   </div>
+  <section ng-show="!vm.hasContacts" class="jumbotron full-width-jumbo">
+      <h2 class="text-purple">Welcome, {{ vm.accountName }}!</span></h3>
+      <p>Find your friends, family and co-workers on WeMessage. Just search by email, and get connected now!</p>
+        <button class="btn btn-purple pull-right" ng-click="vm.addContactPopup()">Find Contacts</button>
+  </section>
   <ul class="row list-group contacts-list" id="contacts-list">
     <a ng-repeat="contact in vm.contacts" ng-href="{{ contact.conversationUrl }}">
       <li class="col-xs-12 list-group-item">
