@@ -68,7 +68,16 @@
       return false;
     };
 
+    // Workaround because Angular doesn't yet support file input change event
     $scope.uploadImage = function(element) {
+      fileReader.readImage(element, vm.emitImage, $scope);
+    }
+
+    vm.emitImage = function(e) {
+      $socket.emit('chatroom-message', '<img src="' + e.target.result + '">');
+    }
+
+    $scope.uploadImageOld = function(element) {
      $scope.$apply(function(scope) {
        console.log('watching?');
        var image = element.files[0];

@@ -3,19 +3,26 @@
     .module('weMessageApp')
     .service('fileReader', fileReader);
 
+
   function fileReader() {
-
-    var readImage = function(e) {
-      var image = document.getElementById('upload-image').files[0];
-      if (image) {
-        var reader = new FileReader();
-        reader.onload = function(e) {
-           return e.target.result;
-        };
-        reader.readAsDataURL(image);
-      }
+    /**
+     * reads image from file input
+     * @param {DOM element} element - Passed in as 'this' from onchange
+     * @param {function} callback - function to execute on read image
+     * @param {Angular object} $scope - Angular $scope object
+     */
+    var readImage = function(element, callback, $scope) {
+      $scope.$apply(function(scope) {
+        var image = element.files[0];
+        if(image) {
+          var reader = new FileReader();
+          reader.onload = function(e) {
+             callback(e);
+          };
+          reader.readAsDataURL(image);
+        }
+      });
     };
-
     return {
       readImage : readImage
     };
