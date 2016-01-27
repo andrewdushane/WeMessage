@@ -3,8 +3,8 @@
     .module('weMessageApp')
     .controller('chatCtrl', chatCtrl);
 
-  chatCtrl.$inject = ['$scope', '$routeParams', '$socket', '$uibModal'];
-  function chatCtrl($scope, $routeParams, $socket, $uibModal) {
+  chatCtrl.$inject = ['$scope', '$routeParams', '$socket', '$uibModal', 'fileReader'];
+  function chatCtrl($scope, $routeParams, $socket, $uibModal, fileReader) {
     var vm = this;
 
     vm.setRoomName = function(roomid) {
@@ -67,6 +67,25 @@
       }
       return false;
     };
+
+    $scope.uploadImage = function(element) {
+     $scope.$apply(function(scope) {
+       console.log('watching?');
+       var image = element.files[0];
+       var reader = new FileReader();
+       reader.onload = function(e) {
+          console.log(e.target.result);
+          $socket.emit('chatroom-message', '<img src="' + e.target.result + '">');
+       };
+       reader.readAsDataURL(image);
+     });
+    };
+
+    vm.uploadImage = function() {
+      console.log('change?')
+      // var image = fileReader.readImage();
+      // console.log(image);
+    }
 
     vm.chatNicknamePopup = function() {
       var modalInstance = $uibModal.open({

@@ -6,6 +6,7 @@
   function messageEntry() {
     return {
       restrict: 'EA',
+      require: 'ngModel',
       templateUrl: '/common/directives/messageEntry/messageEntry.template.html'
     };
   }
