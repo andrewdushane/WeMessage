@@ -74,26 +74,7 @@
     }
 
     vm.emitImage = function(e) {
-      $socket.emit('chatroom-message', '<img src="' + e.target.result + '">');
-    }
-
-    $scope.uploadImageOld = function(element) {
-     $scope.$apply(function(scope) {
-       console.log('watching?');
-       var image = element.files[0];
-       var reader = new FileReader();
-       reader.onload = function(e) {
-          console.log(e.target.result);
-          $socket.emit('chatroom-message', '<img src="' + e.target.result + '">');
-       };
-       reader.readAsDataURL(image);
-     });
-    };
-
-    vm.uploadImage = function() {
-      console.log('change?')
-      // var image = fileReader.readImage();
-      // console.log(image);
+      $socket.emit('chatroom-message', e.target.result);
     }
 
     vm.chatNicknamePopup = function() {

@@ -3,8 +3,8 @@
     .module('weMessageApp')
     .controller('conversationCtrl', conversationCtrl);
 
-  conversationCtrl.$inject = ['$scope', '$routeParams', '$socket', '$http', 'constants'];
-  function conversationCtrl($scope, $routeParams, $socket, $http, constants) {
+  conversationCtrl.$inject = ['$scope', '$routeParams', '$socket', '$http', 'constants', 'fileReader'];
+  function conversationCtrl($scope, $routeParams, $socket, $http, constants, fileReader) {
     var vm = this;
     // accountid refers to wemessage account id
     // userId refers to temporary id set by web socket
@@ -101,30 +101,43 @@
     // send message on submit
     vm.sendMessage = function sendMessage() {
       if(vm.messageToSend) {
-        // send message to conversation chat
-        $socket.emit('chatroom-message', vm.messageToSend);
-        // store message in the database
-        $http({
-          method: 'POST',
-          url: vm.newMessageUrl,
-          data: {
-            sender_account: vm.accountid,
-            recipient_account: vm.contact.id,
-            content: vm.messageToSend
-          },
-          headers: {
-             'Authorization': 'Bearer ' + localStorage.getItem('authToken')
-           }
-        })
-        .then(function successCallback(response) {
-          console.log(response);
-        }, function errorCallback(response) {
-          console.log(response);
-        });
-        vm.messageToSend = '';
+        vm.emitAndPostMessage(vm.messageToSend)
       }
       return false;
     };
+
+    vm.emitAndPostMessage = function emitAndPostMessage(message) {
+      // send message to conversation chat
+      $socket.emit('chatroom-message', message);
+      // store message in the database
+      $http({
+        method: 'POST',
+        url: vm.newMessageUrl,
+        data: {
+          sender_account: vm.accountid,
+          recipient_account: vm.contact.id,
+          content: message
+        },
+        headers: {
+           'Authorization': 'Bearer ' + localStorage.getItem('authToken')
+         }
+      })
+      .then(function successCallback(response) {
+        console.log(response);
+      }, function errorCallback(response) {
+        console.log(response);
+      });
+      vm.messageToSend = '';
+    }
+
+    // Workaround because Angular doesn't yet support file input change event
+    $scope.uploadImage = function(element) {
+      fileReader.readImage(element, vm.sendImage, $scope);
+    }
+
+    vm.sendImage = function(e) {
+      vm.emitAndPostMessage(e.target.result);
+    }
 
     vm.scrollToEnd = function() {
       $('html, body').animate({

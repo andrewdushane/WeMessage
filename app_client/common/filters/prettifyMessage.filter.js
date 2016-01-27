@@ -56,9 +56,24 @@
       }
     }
 
+    function displayBase64(message) {
+      if(message.search('data:image/') != -1) {
+        message = '<img src="' + message + '">';
+        return message;
+      }
+      else return false;
+    }
+
     // Filter message
     return function filterMessage(message) {
+      // Display Base 64 image and exit filter
+      if(displayBase64(message)) {
+        message = displayBase64(message);
+        return message;
+      }
+      // detect and linkify links
       var linked = linkify(message)
+      // detect image links and display as images
       if(linked.links) {
         var imaged = displayImages(linked.content, linked.links);
         message = imaged.content;
