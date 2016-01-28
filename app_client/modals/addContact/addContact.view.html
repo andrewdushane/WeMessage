@@ -1,9 +1,9 @@
-<div class="modal-content">
+<div class="modal-content add-contact-modal">
   <div class="modal-header">
     <h4 class="modal-title">Search for contacts by email address.<br></h4>
   </div>
   <div class="modal-body">
-    <div class="form-group">
+    <div class="form-group search-contacts-form">
       <label for="query" class="col-xs-2 control-label">Email:</label>
       <div class="col-xs-10">
         <input id="query" name="query" ng-model="vm.formData.query" ng-keyup="vm.queryKeyUp()" class="form-control"/>
@@ -20,7 +20,7 @@
       </li>
     </ul>
   </div>
-  <div class="modal-footer">
-    <button type="submit" class="btn btn-purple" ng-show="vm.numSelected > 0" ng-click="vm.clickAdd()">Add Contact<span ng-show="vm.numSelected > 1">s</span></button>
+  <div class="modal-footer" ng-show="vm.numSelected > 0">
+    <button type="submit" class="btn btn-purple" ng-click="vm.clickAdd()">Add Contact<span ng-show="vm.numSelected > 1">s</span></button>
   </div>
 </div>
