@@ -3,8 +3,8 @@
     .module('weMessageApp')
     .controller('homeCtrl', homeCtrl);
 
-  homeCtrl.$inject = ['$scope', '$uibModal'];
-  function homeCtrl($scope, $uibModal) {
+  homeCtrl.$inject = ['$scope', '$uibModal', '$http', 'constants'];
+  function homeCtrl($scope, $uibModal, $http, constants) {
     var vm = this;
     vm.newChatPopup = function() {
       var modalInstance = $uibModal.open({
@@ -24,5 +24,16 @@
         controller: 'loginCtrl as vm'
       });
     };
-  };
+
+    // Wake up the API server if it's asleep
+    $http({
+      method: 'GET',
+      url: constants.apiUrl
+    })
+    .then(function successCallback(response) {
+      console.log(response);
+    }, function errorCallback(response) {
+      console.log(response);
+    });
+    };
 })();

@@ -45,8 +45,12 @@ io.on('connection', function (socket) {
   });
 
   socket.on('chatroom-message', function (message) {
-    var clean = checkForBadWords(message);
-    if(clean) {
+    var clean = false;
+    var isImage = checkIfImage(message);
+    if(!isImage) {
+      clean = checkForBadWords(message);
+    }
+    if(isImage || clean) {
       io.sockets.in(socket.room).emit('chatroom-message', {
         sender: socket.client.id,
         username: socket.username,
@@ -85,6 +89,12 @@ var systemMessageToSender = function(socket, message) {
     message: message
   });
 };
+
+var checkIfImage = function(string) {
+  if(string.search('data:image/') != -1) {
+    return true;
+  } else return false;
+}
 
 var checkForBadWords = function(string) {
   var swears = ['fuck', 'shit', 'cunt', 'faggot', 'pussy', 'bitch', 'asshole'];

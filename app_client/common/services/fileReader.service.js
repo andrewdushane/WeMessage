@@ -17,7 +17,7 @@
         if(image) {
           var reader = new FileReader();
           reader.onload = function(e) {
-             callback(e);
+            callback(e);
           };
           reader.readAsDataURL(image);
         }

@@ -3,8 +3,8 @@
     .module('weMessageApp')
     .controller('registerCtrl', registerCtrl);
 
-  registerCtrl.$inject = ['$uibModalInstance', '$http', '$location', 'constants'];
-  function registerCtrl($uibModalInstance, $http, $location, constants) {
+  registerCtrl.$inject = ['$uibModalInstance', '$http', '$location', '$scope', 'fileReader', 'constants'];
+  function registerCtrl($uibModalInstance, $http, $location, $scope, fileReader, constants) {
     var vm = this;
     vm.formData = {};
     vm.registerUrl = constants.apiUrl + '/register/'
@@ -21,7 +21,8 @@
           data: {
             name: vm.formData.name,
             email: vm.formData.email,
-            password: vm.formData.password
+            password: vm.formData.password,
+            image: vm.profileImage
           }
         })
         .then(function successCallback(response) {
@@ -45,6 +46,20 @@
       }
       return false;
     };
+
+    $scope.uploadImage = function(element) {
+      fileReader.readImage(element, vm.setProfileImage, $scope);
+    }
+
+    vm.setProfileImage = function(e) {
+      var image = e.target.result;
+      if(image) {
+        // $scope.apply so ng-src picks up the change
+        $scope.$apply(function () {
+          vm.profileImage = image;
+        });
+      }
+    }
 
     vm.onClickCancel = function() {
       $uibModalInstance.close();
