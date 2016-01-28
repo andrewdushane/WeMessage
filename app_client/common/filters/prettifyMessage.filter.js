@@ -45,7 +45,7 @@
       var imgTypes = ['jpg', 'png', 'gif']
       for(var i = 0; i < numLinks; i++) {
         var l = links[i];
-        if(l.endsWith('jpg') || l.endsWith('png') || l.endsWith('gif')) {
+        if(l.endsWith('jpg') || l.endsWith('png') || l.endsWith('gif') || l.endsWith('jpeg')) {
           message += '<br><img src="' + l + '">';
           links.splice(i, 1);
         }
