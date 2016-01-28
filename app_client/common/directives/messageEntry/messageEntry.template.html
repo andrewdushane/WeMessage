@@ -7,7 +7,7 @@
 
         <span class="input-group-btn">
           <label for="upload-image" class="custom-file-upload btn btn-default">
-              <input id="upload-image" type="file" name="upload-image" class="upload-image" ng-model="vm.imageToUpload" onchange="angular.element(this).scope().uploadImage(this)"/>
+              <input id="upload-image" type="file" name="upload-image" accept="image/gif, image/jpeg, image/png" class="upload-image" ng-model="vm.imageToUpload" onchange="angular.element(this).scope().uploadImage(this)"/>
               <i class="fa fa-picture-o"></i>
           </label>
         </span>

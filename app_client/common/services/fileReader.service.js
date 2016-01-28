@@ -14,7 +14,9 @@
     var readImage = function(element, callback, $scope) {
       $scope.$apply(function(scope) {
         var image = element.files[0];
-        if(image) {
+        var isImage = false;
+        if(image.type.search('image') != -1) { isImage = true };
+        if(isImage) {
           var reader = new FileReader();
           reader.onload = function(e) {
             callback(e);

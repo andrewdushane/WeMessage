@@ -25,7 +25,7 @@
         <div class="form-group col-xs-12">
           <span class="bold">Profile Image:</span><br>
           <label for="image" class="custom-file-upload btn btn-default">
-              <input id="image" type="file" name="image" class="upload-image" onchange="angular.element(this).scope().uploadImage(this)"/>
+              <input id="image" type="file" name="image" accept="image/gif, image/jpeg, image/png" class="upload-image" onchange="angular.element(this).scope().uploadImage(this)"/>
               <i class="fa fa-picture-o"></i> Upload Image
           </label>
           <img ng-show="vm.profileImage" ng-src="{{vm.profileImage}}" alt="profile image preview" class="profile-image">
