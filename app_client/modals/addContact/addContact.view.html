@@ -11,12 +11,12 @@
     </div>
     <ul class="row list-group found-contacts" id="found-contacts">
       <li class="col-xs-12 list-group-item" ng-repeat="contact in vm.foundContacts">
-          <span class="contact-name bold">{{ contact.name }}</span>
-          <span class="pull-right">
-            <i ng-show="!contact.added" class="fa fa-user-times clickable dark" ng-click="vm.selectContact(contact)"></i>
-            <i ng-show="contact.added" class="fa fa-user-plus clickable dark selected" ng-click="vm.selectContact(contact)"></i>
-          </span>
-          <br>{{ contact.email }}&nbsp;
+        <span class="contact-name bold">{{ contact.name }}</span>
+        <span class="pull-right">
+          <i ng-show="!contact.added" class="fa fa-user-times clickable dark" ng-click="vm.selectContact(contact)"></i>
+          <i ng-show="contact.added" class="fa fa-user-plus clickable dark selected" ng-click="vm.selectContact(contact)"></i>
+        </span>
+        <br>{{ contact.email }}&nbsp;
       </li>
     </ul>
   </div>
