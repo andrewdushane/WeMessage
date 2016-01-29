@@ -33,7 +33,12 @@
         controller: 'chatHomeCtrl',
         controllerAs: 'vm'
       })
-      .otherwise({redirectTo: '/'});
+      .when('/not-found', {
+        templateUrl: '/static/static.view.html',
+        controller: 'notFoundCtrl',
+        controllerAs: 'vm'
+      })
+      .otherwise({redirectTo: '/not-found'});
     $locationProvider.html5Mode({
       enabled: true,
       requireBase: false

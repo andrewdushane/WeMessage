@@ -1,11 +1,16 @@
 <main-navigation></main-navigation>
-<header class="row sub-header">
-  <div class="col-xs-12 text-center">
-    <h3>
-      <span class="pull-left clickable" ng-click="vm.onClickBack()"><i class="fa fa-chevron-left"></i></span>
-      {{ vm.pageTitle }}
-    </h3>
+<div class="container-fluid">
+  <header class="row sub-header">
+    <div class="col-xs-12 text-center">
+      <h3>
+        <span class="pull-left clickable" ng-click="vm.onClickBack()"><i class="fa fa-chevron-left"></i></span>
+        {{ vm.pageTitle }}
+      </h3>
+    </div>
+  </header>
+  <div class="jumbotron full-width-jumbo">
+      <h2 class="text-purple" ng-bind-html="vm.content.header"></span></h2>
+      <p ng-bind-html="vm.content.main"></p>
   </div>
-</header>
-
+</div>
 <main-footer></main-footer>
