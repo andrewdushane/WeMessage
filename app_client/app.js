@@ -18,6 +18,11 @@
         controller: 'contactsCtrl',
         controllerAs: 'vm'
       })
+      .when('/my-account', {
+        templateUrl: '/myAccount/myAccount.view.html',
+        controller: 'myAccountCtrl',
+        controllerAs: 'vm'
+      })
       .when('/account/:accountid/thread/:contactName/:contactid', {
         templateUrl: '/conversation/conversation.view.html',
         controller: 'conversationCtrl',

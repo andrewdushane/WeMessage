@@ -1,0 +1,21 @@
+<main-navigation></main-navigation>
+<div class="container-fluid thread-container" id="thread-container">
+  <div class="row sub-header">
+    <div class="col-xs-12">
+      <h3 class="text-center">
+        <span class="pull-left clickable" ng-click="vm.onClickBack()"><i class="fa fa-chevron-left"></i></span>
+        {{ vm.accountData.name }}
+      </h3>
+    </div>
+  </div>
+  <section class="row top-buffer">
+    <div class="col-xs-12 col-sm-4 col-sm-offset-4">
+      <img ng-show="vm.contact.image" ng-src="{{ vm.contact.image }}" class="profile-image" alt="{{ vm.contact.name }} profile image">
+      <p class="lead"><span class="bold">Name:</span> {{ vm.accountData.name }}</p>
+      <p><span class="bold">Email:</span> {{ vm.accountData.email }}</p>
+      <button class="btn btn-purple form-control" ng-click="vm.onClickUpdate()">Update Account</button>
+    </div>
+  </section>
+
+</div>
+<main-footer></main-footer>
