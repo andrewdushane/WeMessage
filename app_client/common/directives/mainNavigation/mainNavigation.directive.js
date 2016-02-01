@@ -32,6 +32,7 @@
       link: function (scope) {
         scope.onClickLogout = onClickLogout;
         scope.loggedIn = localStorage.getItem('loggedIn');
+        scope.accountName = localStorage.getItem('accountName');
         scope.registrationPopup = registrationPopup;
         scope.loginPopup = loginPopup;
       }

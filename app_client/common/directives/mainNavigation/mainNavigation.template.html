@@ -12,11 +12,12 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="collapse-main-navigation">
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="/#/">Home</a></li>
+        <li><a href="/#/"><i class="fa fa-home fa-fw" ng-show="loggedIn"></i>Home</a></li>
         <li ng-show="!loggedIn" ng-click="loginPopup()" class="clickable"><a>Login</a></li>
         <li ng-show="!loggedIn" ng-click="registrationPopup()" class="clickable"><a>Registration</a></li>
-        <li ng-show="loggedIn"><a href="/#/contacts">Contacts</a></li>
-        <li ng-show="loggedIn" ng-click="onClickLogout()" class="clickable"><a>Logout</a></li>
+        <li ng-show="loggedIn"><a href="/#/contacts"><i class="fa fa-users fa-fw"></i>&nbsp;Contacts</a></li>
+        <li ng-show="loggedIn"><a href="/#/my-account"><i class="fa fa-user fa-fw"></i>&nbsp;My Account</a></li>
+        <li ng-show="loggedIn" ng-click="onClickLogout()" class="clickable"><a><i class="fa fa-sign-out fa-fw"></i>&nbsp;Logout</a></li>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->

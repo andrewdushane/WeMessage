@@ -10,9 +10,21 @@
     var onClickBack = function() {
       window.history.back();
     };
+    var storeAccount = function(account) {
+      if(account.name) {
+        localStorage.setItem('accountName', account.name);
+      }
+      if(account.email) {
+        localStorage.setItem('accountEmail', account.email);
+      }
+      if(account.id) {
+        localStorage.setItem('accountid', account.id);
+      }
+    };
     return {
       apiUrl : apiUrl,
-      onClickBack : onClickBack
+      onClickBack : onClickBack,
+      storeAccount : storeAccount
     };
   };
 })();

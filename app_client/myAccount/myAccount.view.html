@@ -13,7 +13,15 @@
       {{vm.alertMessage}}
     </p>
     <form class="col-xs-12 col-sm-6 col-sm-offset-3">
-      <img ng-show="vm.accountData.image" ng-src="{{ vm.accountData.image }}" class="profile-image" alt="{{ vm.accountData.name }} profile image">
+      <div class="form-group">
+        <img ng-show="vm.accountData.image" ng-src="{{ vm.accountData.image }}" class="profile-image" alt="{{ vm.accountData.name }} profile image">
+      </div>
+      <div class="form-group">
+        <label for="image" class="custom-file-upload btn btn-default update-account-image-upload">
+            <input id="image" type="file" name="image" accept="image/gif, image/jpeg, image/png" class="upload-image" onchange="angular.element(this).scope().uploadImage(this)"/>
+            <i class="fa fa-picture-o"></i> <span ng-show="!vm.accountData.image">Add</span><span ng-show="vm.accountData.image">Upload New</span> Profile Image
+        </label>
+      </div>
       <div class="form-group">
         <label for="name">Name:</label>
         <input type="text" class="form-control" name="name" ng-model="vm.formData.name" ng-value="vm.accountData.name">
