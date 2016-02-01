@@ -8,6 +8,8 @@
       var vm = this;
       vm.accountUrl = constants.apiUrl + '/my-account';
       vm.accountData = {};
+      vm.newImage = false;
+      vm.alertMessage = '';
       var token = localStorage.getItem('authToken');
       vm.getAccountInfo = function(token) {
         if(token) {
@@ -31,21 +33,36 @@
         }
       }
       vm.onClickUpdate = function() {
+        var data = {
+          name: vm.formData.name,
+          email: vm.formData.email
+        };
+        if(vm.newImage) {
+          data.image = vm.image
+        }
+        if(vm.formData.password != '') {
+          data.password = vm.formData.password
+        }
         $http({
-          method: 'PATCH',
+          method: 'POST',
           url: vm.accountUrl,
           headers: {
             'Authorization': 'Bearer ' + localStorage.getItem('authToken')
           },
-          data: {
-            name: formData.name,
-            email: formData.email,
-            image: formData.image
-          }
+          data: data
         })
         .then(function successCallback(response) {
           console.log(response);
+          vm.alertClass = 'text-success';
+          vm.alertMessage = 'Account updated.'
+          vm.accountData = response.data;
         }, function errorCallback(response) {
+          vm.alertClass = 'text-danger';
+          if(response.data.password) {
+            vm.alertMessage = 'Please use a password between 6 and 20 characters.';
+          } else {
+            vm.alertMessage = 'There was an error updating your account. Please try again later.';
+          }
           console.log('error');
           console.log(response);
         });

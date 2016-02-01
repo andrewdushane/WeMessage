@@ -6,7 +6,7 @@
   function constants() {
     // var apiUrl = 'http://localhost:3000'; // uncomment for local API server
     // Deployed API server
-    var apiUrl = 'https://obscure-forest-50106.herokuapp.com';
+    var apiUrl = 'https://obscure-forest-50106.herokuapp.com'; // comment when using local database
     var onClickBack = function() {
       window.history.back();
     };
