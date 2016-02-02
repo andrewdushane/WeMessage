@@ -5,13 +5,12 @@
 
   mainNavigation.$inject = ['$uibModal']
   function mainNavigation($uibModal, scope) {
-    var onClickLogout = function onClickLogout() {
+    var onClickLogout = function onClickLogout(scope) {
       var modalInstance = $uibModal.open({
         templateUrl: '/modals/logout/logout.view.html',
         controller: 'logoutCtrl as vm'
       });
-      modalInstance.result.then(function() {
-        console.log('then');
+      modalInstance.result.then(function(scope) {
       });
     }
     var registrationPopup = function() {
@@ -35,6 +34,10 @@
         scope.accountName = localStorage.getItem('accountName');
         scope.registrationPopup = registrationPopup;
         scope.loginPopup = loginPopup;
+        scope.$watch(localStorage.getItem('loggedIn'), function(n,o){
+           if(!n) return;
+           scope.loggedIn = n;
+        },true);
       }
     };
   }
